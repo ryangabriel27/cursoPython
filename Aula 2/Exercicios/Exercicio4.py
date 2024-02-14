@@ -20,3 +20,19 @@ if int(numeroDigitado)%2 == 0:
 else:
     print("É um numero ímpar")
 print("---------------x----------------")
+
+print("---x LAÇO DE REPETIÇÃO x---")
+numeros = [3,15,19,21,30,47,69]
+
+for numero in numeros:
+    if numero%2 == 1 & numero%3 ==0:
+        print(str(numero)+" - É um número ímpar e múltiplo de 3")
+print("---------------x----------------")
+
+print("---x VERIFICA IDADE x---")
+
+idade_usuario = input("Digite sua idade: ")
+
+if 18 <= idade_usuario <= 65:
+    print("Sua idade está dentro do intervalo de 18 a 65 anos")
+
