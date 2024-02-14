@@ -27,70 +27,49 @@ while aberto:
         print("Você escolheu ver a lista de tarefas!")
         print("--== Lista ==--")
         for tarefa in listaDeTarefa:
-            print(f"° {tarefa}")
+            print(f"{listaDeTarefa.index(tarefa)+1}. {tarefa}")
         print("------x------")
         print(" ")
         
     elif escolha == 3:
-        
         print("Você escolheu editar uma tarefa")
-        tarefa_editar = input("Digite o nome da tarefa a ser editada: ")
-        nomeTarefa = tarefa_editar.lower().strip()
-        encontraTarefa = False
-        for tarefa in listaDeTarefa:
-            if str(tarefa).lower() == nomeTarefa:
-                salva_index = listaDeTarefa.index(tarefa)
-                novaTarefa = input("Digite o novo nome da tarefa: ")
-                listaDeTarefa.remove(tarefa)
-                listaDeTarefa.insert(salva_index, novaTarefa)
+        tarefa_editar = int(input("Digite o número da tarefa a ser editada: "))
+        if tarefa_editar >= 0:
+            for tarefa in listaDeTarefa:
+                if tarefa == listaDeTarefa[tarefa_editar - 1]:
+                    novoNome = input("Digite o novo nome da tarefa")
+                    del listaDeTarefa[tarefa_editar - 1]
+                    listaDeTarefa.insert((tarefa_editar-1), novoNome)
+                
                 
     elif escolha == 4:
         
         print("Excluir uma tarefa")
-        decisao = int(input("A tarefa a ser excluída esta concluída \n 1- Sim \n 2- Não \n"))
-        if decisao == 1:
-            tarefa_excluir = input("Digite o nome da tarefa a ser excluída: ")
-            nomeTarefa = tarefa_excluir.lower()+"(Concluída)"
-            encontraTarefa = False
-            for tarefa in listaDeTarefa:
-                if str(tarefa).lower().replace(" ","") == nomeTarefa.replace(" ",""):
-                    listaDeTarefa.remove(tarefa)
-                    print("Tarefa excluída com sucesso!")
-                    encontraTarefa = True
-            if not encontraTarefa:
-                print("Tarefa não encontrada!")
+        tarefa_excluir = int(input("Digite o número da tarefa a ser excluída: "))
+        encontraTarefa = False
+        if tarefa_excluir >= 0:
+            del listaDeTarefa[tarefa_excluir - 1]
+            print("Tarefa excluída com sucesso!")
+            encontraTarefa = True
+        if not encontraTarefa:
+            print("Tarefa não encontrada!")
             print("------x------")
             print(" ")
-        elif decisao == 2:
-            tarefa_excluir = input("Digite o nome da tarefa a ser excluída: ")
-            nomeTarefa = tarefa_excluir.lower()
-            encontraTarefa = False
-            
-            for tarefa in listaDeTarefa:
-                if tarefa.lower().strip() == nomeTarefa:
-                    listaDeTarefa.remove(tarefa)
-                    print("Tarefa excluída com sucesso!")
-                    encontraTarefa = True
-            if not encontraTarefa:
-                print("Tarefa não encontrada!")
-            print("------x------")
-            print(" ")
-        else: 
-            print("ERRO!1")
-            print("------x------")
-            print(" ")
-        
     elif escolha == 5:
         
         print("Concluiu uma tarefa, agora marque ela como concluída!")
-        tarefa_concluida = input("Digite o nome da tarefa: ")
-        nomeTarefa = tarefa_concluida.lower()
+        tarefa_concluida = int(input("Digite o número da tarefa: "))
         encontraTarefa = False
-        for tarefa in listaDeTarefa:
-            if tarefa.lower() == nomeTarefa:
-                salva_index = listaDeTarefa.index(tarefa)
-                listaDeTarefa.remove(tarefa)
-                listaDeTarefa.insert(salva_index, tarefa+" (Concluída)")  
+        if tarefa_concluida >= 0:
+            for tarefa in listaDeTarefa:
+                if tarefa == listaDeTarefa[tarefa_concluida - 1]:
+                    listaDeTarefa.remove(tarefa)
+                    listaDeTarefa.insert((tarefa_concluida - 1), tarefa+" (Concluída)")
+            encontraTarefa = True  
+        if not encontraTarefa:
+            print("Tarefa não encontrada!")
+            print("------x------")
+            print(" ")
         
     elif escolha == 6:
         
